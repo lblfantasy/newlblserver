@@ -1,0 +1,2 @@
+Dear {{username}},you have requested to reset your password,to do so please follow this link:
+		{{{link}}}
