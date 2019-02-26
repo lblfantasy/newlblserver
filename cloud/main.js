@@ -1693,7 +1693,7 @@ Parse.Cloud.define('scoretotal', function(req, res) {
 	  
 	  
    
-     
+      res.success('Hiya');
   
   },
 
@@ -1711,7 +1711,7 @@ Parse.Cloud.define('scoretotal', function(req, res) {
   }
 });
 	
-  res.success('Hiya');
+ 
 });
 
 Parse.Cloud.define('postStatUser', function(req, res) {
