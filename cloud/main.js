@@ -1695,8 +1695,8 @@ Parse.Cloud.define('scoretotal', function(req, res) {
     effiData.set('totalEfficiency',totalEff);
     effiData.save(null, { useMasterKey: true });
 	
-	return "Done";
-	res.success("Done");
+	return 'Done';
+	
   
 }, (error) => {
   // Execute any logic that should take place if the save fails.
