@@ -1695,6 +1695,7 @@ Parse.Cloud.define('scoretotal', function(req, res) {
     effiData.set('totalEfficiency',totalEff);
     effiData.save(null, { useMasterKey: true });
 	
+	return "Done";
 	res.success("Done");
   
 }, (error) => {
@@ -1712,7 +1713,6 @@ Parse.Cloud.define('scoretotal', function(req, res) {
 
  
 });
-
 
 
 Parse.Cloud.define('automaticConfirmation', function(req, res) {
