@@ -1663,11 +1663,15 @@ Parse.Cloud.define('scoretotal', function(req, res) {
 	 var userQuery = new Parse.Query('Player');
 	
 	userQuery.limit(1000);
-		 userQuery.find({
-  success: function(results) {
- 
+	
+	userQuery.find().then((results) => {
+  // Execute any logic that should take place after the object is saved.
+  console.log('New object created with objectId: ' + results.length);
   
- 
+   var  counter = 0;
+
+   console.log("Found " + results.length + " results");
+  
    for (var i = 0; i < results.length; i++) {
   
     var userData = results[i];
@@ -1677,40 +1681,33 @@ Parse.Cloud.define('scoretotal', function(req, res) {
    }
 	  
 	   var totaleffi = new Parse.Query('TotalEfficiency');
-	  	 totaleffi.find({
-  success: function(results) {
- 
+	   totaleffi.find().then((results) => {
+  // Execute any logic that should take place after the object is saved.
+  console.log('New object created with objectId: ' + results.length);
   
- 
-   for (var i = 0; i < results.length; i++) {
+   var  counter = 0;
+
+   console.log("Found " + results.length + " results");
   
-    var userData = results[i];
+   var userData = results[i];
     userData.set('totalEfficiency',totalEff);
     userData.save(null, { useMasterKey: true });
-    
-     
-   }
-	  
-	  
-   
-      res.success('Hiya');
-  
-  },
-
-  error: function(error) {
-    // error is an instance of Parse.Error.
-  }
-});
-   
-     
-  
-  },
-
-  error: function(error) {
-    // error is an instance of Parse.Error.
-  }
-});
 	
+	res.success("Done");
+  
+}, (error) => {
+  // Execute any logic that should take place if the save fails.
+  // error is a Parse.Error with an error code and message.
+  console.log('Failed to create new object, with error code: ' + error.message);
+});
+  
+  
+}, (error) => {
+  // Execute any logic that should take place if the save fails.
+  // error is a Parse.Error with an error code and message.
+  console.log('Failed to create new object, with error code: ' + error.message);
+});
+
  
 });
 
