@@ -1520,41 +1520,21 @@ Parse.Cloud.define('resetOther', function(req, res) {
  
 });
 
-Parse.Cloud.define('cloudPass', function(req, res) {
-  var userQuery = new Parse.Query('_User');
+Parse.Cloud.define("cloudPass", async (request) => {
+   var userQuery = new Parse.Query('_User');
 	userQuery.limit(1000);
 	
 	userQuery.notEqualTo('CloudPassed',false);
-	
-	
-	 userQuery.find({
-  success: function(results) {
  
-  
- 
-var counter = 0;
-   for (var i = 0; i < results.length; i++) {
-  
-    var userData = results[i];
+  const results = await userQuery.find();
+  var counter = 0;
+  for (let i = 0; i < results.length; ++i) {
+     var userData = results[i];
     userData.set('CloudPassed',false);
     userData.save(null, { useMasterKey: true });
-	   counter++;
-    
-     
-   }
-    res.success('I passed on '+counter + ' users');
-   
-     
-  
-  },
-
-  error: function(error) {
-    // error is an instance of Parse.Error.
+	counter++;
   }
-});
-	
-	
- 
+  return counter;
 });
 
 
