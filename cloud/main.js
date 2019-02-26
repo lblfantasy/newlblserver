@@ -1679,6 +1679,8 @@ Parse.Cloud.define('scoretotal', function(req, res) {
     
      
    }
+   
+   
 	  
 	   var totaleffi = new Parse.Query('TotalEfficiency');
 	   totaleffi.find().then((resultsEff) => {
@@ -1688,8 +1690,8 @@ Parse.Cloud.define('scoretotal', function(req, res) {
    var  counter = 0;
 
    console.log("Found " + resultsEff.length + " results");
-  
-   var effiData = resultsEff[i];
+  console.log("Total Eff: " + totalEff);
+   var effiData = resultsEff[0];
     effiData.set('totalEfficiency',totalEff);
     effiData.save(null, { useMasterKey: true });
 	
