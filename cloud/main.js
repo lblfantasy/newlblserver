@@ -1693,7 +1693,8 @@ Parse.Cloud.define('scoretotal', function(req, res) {
   console.log("Total Eff: " + totalEff);
    var effiData = resultsEff[0];
     effiData.set('totalEfficiency',totalEff);
-   return effiData.save(null, { useMasterKey: true });
+    effiData.save(null, { useMasterKey: true });
+		   throw "Hello";
 	
 	
 	
