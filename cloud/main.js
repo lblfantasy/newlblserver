@@ -1681,17 +1681,17 @@ Parse.Cloud.define('scoretotal', function(req, res) {
    }
 	  
 	   var totaleffi = new Parse.Query('TotalEfficiency');
-	   totaleffi.find().then((results) => {
+	   totaleffi.find().then((resultsEff) => {
   // Execute any logic that should take place after the object is saved.
-  console.log('New object created with objectId: ' + results.length);
+  console.log('New object created with objectId: ' + resultsEff.length);
   
    var  counter = 0;
 
-   console.log("Found " + results.length + " results");
+   console.log("Found " + resultsEff.length + " results");
   
-   var userData = results[i];
-    userData.set('totalEfficiency',totalEff);
-    userData.save(null, { useMasterKey: true });
+   var effiData = resultsEff[i];
+    effiData.set('totalEfficiency',totalEff);
+    effiData.save(null, { useMasterKey: true });
 	
 	res.success("Done");
   
@@ -1709,45 +1709,6 @@ Parse.Cloud.define('scoretotal', function(req, res) {
 });
 
  
-});
-
-Parse.Cloud.define('postStatUser', function(req, res) {
-   var currentUser = req.params.currentUser
-   
-   
-     
-   var userQuery = new Parse.Query('_User');
-	
-	
-   userQuery.equalTo('username',currentUser);
-	
-	 userQuery.find({
-  success: function(results) {
- 
-  
- 
-   for (var i = 0; i < results.length; i++) {
-  
-    var userData = results[i];
-    userData.set("StatUser",currentUser);
-    userData.save(null, { useMasterKey: true });
-    
-     
-   }
-   
-   
-     
-  
-  },
-
-  error: function(error) {
-    // error is an instance of Parse.Error.
-  }
-});
-	
-	
-
-   
 });
 
 
