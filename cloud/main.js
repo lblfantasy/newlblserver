@@ -1526,8 +1526,9 @@ Parse.Cloud.define("cloudPass", async (request) => {
 	
 	userQuery.notEqualTo('CloudPassed',false);
  
-  const results = await userQuery.find();
+  const results = await userQuery.find({userMaterKey: true});
   var counter = 0;
+  console.log('Cloud Passed Big Bang');
   for (let i = 0; i < results.length; ++i) {
      var userData = results[i];
     userData.set('CloudPassed',false);
