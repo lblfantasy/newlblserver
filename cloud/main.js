@@ -1658,7 +1658,7 @@ Parse.Cloud.define('scoretotal', function(req, res) {
 	
 	var query = new Parse.Query(Parse.Installation);
 
-
+	var promise = new Parse.Promise();
 	
 	 var userQuery = new Parse.Query('Player');
 	
@@ -1694,7 +1694,8 @@ Parse.Cloud.define('scoretotal', function(req, res) {
    var effiData = resultsEff[0];
     effiData.set('totalEfficiency',totalEff);
     effiData.save(null, { useMasterKey: true });
-    return Promise.accept('Done');
+    promise.resolve('Done');
+    return promise;
 	
 	
 	
