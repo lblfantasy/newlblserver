@@ -25,7 +25,7 @@ var api = new ParseServer({
       apiKey: 'AIzaSyB_2yWQmTn04usSEQWr_hq1ca987xTiOEY' // The Server API Key of GCM
     },
      ios: {
-        pfx: 'Push_ios.p12',
+        pfx: 'newlblcer.p12',
         passphrase: '', // optional password to your p12/PFX
         bundleId: 'BRICS.LBLFantasyLeagues',
         production: true
