@@ -1536,7 +1536,7 @@ Parse.Cloud.define("cloudPass", async (request) => {
 	counter++;
   }
 console.log('Counter is ' + counter);
-return results;
+return 'yo';
   
 });
 
