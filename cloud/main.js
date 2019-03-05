@@ -1850,7 +1850,7 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
 	console.log(playersInThisRound.length);
 	queryPlayer.containedIn('Name',playersInThisRound);
 		
-	const results2 = await queryPlayer.find({userMaterKey: true});
+	queryPlayer.find().then((results2) => {	
    var totalScore = totalScoreRound;
 	  
    for (var i = 0; i < results2.length; i++) {
@@ -1904,9 +1904,13 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
    
      userDataUser.save(null, { useMasterKey: true });   
  
+	   },(error) => {
+  // Execute any logic that should take place if the save fails.
+  // error is a Parse.Error with an error code and message.
+  console.log('Failed to create new object, with error code: ' + error.message);
+});
+
 	   }
-	   
-	
     
    } else  if (bonusThisRound === 1){
     
@@ -2355,9 +2359,7 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
  
    }
   
-     
-   
-	     
+    
   
   },
 	  
