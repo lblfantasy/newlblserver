@@ -2360,6 +2360,8 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
 
  
    }
+   
+   return 'Yakari';
   
      
 });
