@@ -1837,6 +1837,7 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
     var playersInThisRound = userData.get(currentRoundPlayer); 
 	   if (playersInThisRound.length === 0 ){
 		   console.log('Round1 is Zero');
+		   console.log(statUser);
 		   
 		    historyRounds[currentNumber] = 0;
                     userData.set('LastScore',0);
