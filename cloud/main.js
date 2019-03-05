@@ -1991,7 +1991,7 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
 	    
    
      userDataUser.save(null, { useMasterKey: true });   
- 
+	 return 1;
 	
   
   },
