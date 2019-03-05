@@ -1809,7 +1809,7 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
 	userQuery.limit(1);
  
 	userQuery.equalTo('CloudPassed',false);
-	
+	userQuery.equalTo('username','MrZoux');
   
   userQuery.find().then(
   function(results) {
