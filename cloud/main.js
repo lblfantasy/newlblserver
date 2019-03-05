@@ -1826,7 +1826,7 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
 	var bonusStateArray = userData.get('BonusEachRound');
 	var bonusThisRound = bonusStateArray[currentNumber];
 	var historyRounds = userData.get('HistoryRoundScore');
- 	userDataUser.set('CloudPassed',true);
+ 	userData.set('CloudPassed',true);
 	   
 			   
 	 
@@ -1884,7 +1884,7 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
 	  }
 	  totalScoreRound = (totalScoreRound.toFixed(2))/1;
 	   historyRounds[currentNumber] = totalScoreRound;
-      userDataUser.set('LastScore',totalScoreRound);
+      userData.set('LastScore',totalScoreRound);
      
 	  var parsetotalScore = 0;
 	    for (var k = 0; k < historyRounds.length; k++) {
@@ -1893,8 +1893,8 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
 	  
 	  parsetotalScore = (parsetotalScore.toFixed(2))/1;
      
-      userDataUser.set('TotalScore',parsetotalScore);
-      userDataUser.set('HistoryRoundScore',historyRounds);
+      userData.set('TotalScore',parsetotalScore);
+      userData.set('HistoryRoundScore',historyRounds);
 	  
 	  
       
@@ -1902,7 +1902,7 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
 	  
 	    
    
-     userDataUser.save(null, { useMasterKey: true });   
+     userData.save(null, { useMasterKey: true });   
  
 	   },(error) => {
   // Execute any logic that should take place if the save fails.
