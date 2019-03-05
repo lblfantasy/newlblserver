@@ -1520,7 +1520,7 @@ Parse.Cloud.define('resetOther', function(req, res) {
  
 });
 
-Parse.Cloud.define("cloudPass", async (request) => {
+Parse.Cloud.define("cloudPass", async (request,res) => {
    var userQuery = new Parse.Query('_User');
 	userQuery.limit(20);
 	
@@ -1536,13 +1536,7 @@ Parse.Cloud.define("cloudPass", async (request) => {
 	counter++;
   }
 console.log('Counter is ' + counter);
-  return counter;
-}).then((res) => {
-	res.success('hola');
-}, (error) => {
-  // Execute any logic that should take place if the save fails.
-  // error is a Parse.Error with an error code and message.
-  console.log('Failed to create new object, with error code: ' + error.message);
+  res.success('hey');
 });
 
 
