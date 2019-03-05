@@ -1790,10 +1790,10 @@ Parse.Cloud.define('automaticConfirmation', function(req, res) {
 
 
 
-Parse.Cloud.define('computeScoreRound', function(req, res) {
-  var currentRoundPlayer = req.params.currentRoundPlayer
-  var currentRound = req.params.currentRound
-  var currentNumber = req.params.currentNumber
+Parse.Cloud.define('computeScoreRound', async (request) => {
+  var currentRoundPlayer = request.params.currentRoundPlayer
+  var currentRound = request.params.currentRound
+  var currentNumber = request.params.currentNumber
   
 
   
@@ -1807,6 +1807,7 @@ Parse.Cloud.define('computeScoreRound', function(req, res) {
 	userQuery.limit(1);
  
 	userQuery.equalTo('CloudPassed',false);
+	userQuery.equalTo('username','MrZoux');
 	
   
   
@@ -1820,52 +1821,36 @@ Parse.Cloud.define('computeScoreRound', function(req, res) {
 	  
 	  
     var userData = results[z];
-	   counter++;
+	counter++;
+	var statUser = userData.get('username');
+	var bonusStateArray = userData.get('BonusEachRound');
+	var bonusThisRound = bonusStateArray[currentNumber];
+	var historyRounds = userData.get('HistoryRoundScore');
+ 	userDataUser.set('CloudPassed',true);
 	   
- 
-	   var statUser = userData.get('username');
-	   
-	    var nameQuery = new Parse.Query('_User');
-		nameQuery.equalTo('username',statUser);
-	   
-		nameQuery.find({
-  success: function(resultsUser) {
-			  var userDataUser = resultsUser[0];
-	  console.log('User Is  ' + statUser);
-			   var bonusStateArray = userDataUser.get('BonusEachRound');
-			    var bonusThisRound = bonusStateArray[currentNumber];
-   var historyRounds = userData.get('HistoryRoundScore');
- 	   userDataUser.set('CloudPassed',true);
-	   
+			   
+	 
 	   
 	    if (bonusThisRound === 0 || bonusThisRound === 5){
     
     
-    var playersInThisRound = userDataUser.get(currentRoundPlayer); 
+    var playersInThisRound = userData.get(currentRoundPlayer); 
 	   if (playersInThisRound.length === 0 ){
 		   console.log('Round1 is Zero');
 		   
 		    historyRounds[currentNumber] = 0;
-                    userDataUser.set('LastScore',0);
-		  
-                    userDataUser.set('HistoryRoundScore',historyRounds);
-		    userDataUser.save(null, { useMasterKey: true });
+                    userData.set('LastScore',0);
+					userData.set('HistoryRoundScore',historyRounds);
+					userData.save(null, { useMasterKey: true });
 	   }else{
 	
- var confirmationRounds = userDataUser.get('ConfirmRound');
+ var confirmationRounds = userData.get('ConfirmRound');
    
      var queryPlayer = new Parse.Query('Player');
-  
 	console.log(playersInThisRound.length);
-		   
-	
-		queryPlayer.containedIn('Name',playersInThisRound);
+	queryPlayer.containedIn('Name',playersInThisRound);
 		
-	   
-		
-		queryPlayer.find({
-  success: function(results2) {
- 
+	const results2 = await queryPlayer.find({userMaterKey: true});
    var totalScore = totalScoreRound;
 	  
    for (var i = 0; i < results2.length; i++) {
@@ -1919,26 +1904,6 @@ Parse.Cloud.define('computeScoreRound', function(req, res) {
    
      userDataUser.save(null, { useMasterKey: true });   
  
-	
-  
-  },
-	    
-	    
-
-   error: function(error) {
-    // error is an instance of Parse.Error.
-  }
-		});
-		
-	
-		   
-	 
-		
-		   
-    
-     
-      
-  
 	   }
 	   
 	
@@ -2144,14 +2109,6 @@ Parse.Cloud.define('computeScoreRound', function(req, res) {
 		});
 		
 	
-		   
-	 
-		
-		   
-    
-     
-      
-  
 	   }
 	   
 	
@@ -2249,11 +2206,7 @@ Parse.Cloud.define('computeScoreRound', function(req, res) {
       userDataUser.set('TotalScore',parsetotalScore);
       userDataUser.set('HistoryRoundScore',historyRounds);
 	  
-	  
-      
-       
-	  
-	    
+   
    
      userDataUser.save(null, { useMasterKey: true });   
  
@@ -2261,21 +2214,14 @@ Parse.Cloud.define('computeScoreRound', function(req, res) {
   
   },
 	    
-	    
+    
 
    error: function(error) {
     // error is an instance of Parse.Error.
   }
 		});
 		
-	
-		   
-	 
-		
-		   
-    
-     
-      
+
   
 	   }
 	   
@@ -2397,14 +2343,7 @@ Parse.Cloud.define('computeScoreRound', function(req, res) {
    }
 	   
 	  
-		},
-
-  error: function(error) {
-    // error is an instance of Parse.Error.
-		}
-		});
-	   
-	   
+	
 	  
   
    
