@@ -2359,7 +2359,9 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
  
    }
   
-    
+     
+   
+	   return 1; 
   
   },
 	  
