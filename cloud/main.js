@@ -1520,7 +1520,7 @@ Parse.Cloud.define('resetOther', function(req, res) {
  
 });
 
-Parse.Cloud.define("cloudPass", async (request,res) => {
+Parse.Cloud.define("cloudPass", async (request) => {
    var userQuery = new Parse.Query('_User');
 	userQuery.limit(20);
 	
@@ -1536,7 +1536,8 @@ Parse.Cloud.define("cloudPass", async (request,res) => {
 	counter++;
   }
 console.log('Counter is ' + counter);
-  res.success('hey');
+return results;
+  
 });
 
 
