@@ -1535,8 +1535,9 @@ Parse.Cloud.define("cloudPass", async (request) => {
     userData.save(null, { useMasterKey: true });
 	counter++;
   }
+  console.log('Counter is ' + counter);
   return counter;
-console.log('Counter is ' + counter);
+
  
 });
 
@@ -1808,9 +1809,7 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
 	userQuery.limit(1);
  
 	userQuery.equalTo('CloudPassed',false);
-	userQuery.equalTo('username','MrZoux');
 	
-  
   
   userQuery.find().then(
   function(results) {
@@ -1843,6 +1842,7 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
                     userData.set('LastScore',0);
 					userData.set('HistoryRoundScore',historyRounds);
 					userData.save(null, { useMasterKey: true });
+					return 1;
 	   }else{
 	
  var confirmationRounds = userData.get('ConfirmRound');
@@ -1903,7 +1903,8 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
 	  
 	    
    
-     userData.save(null, { useMasterKey: true });   
+     userData.save(null, { useMasterKey: true });
+	 return 1;
  
 	   },(error) => {
   // Execute any logic that should take place if the save fails.
@@ -2362,7 +2363,7 @@ Parse.Cloud.define('computeScoreRound', async (request) => {
   
      
    
-	   return 1; 
+	
   
   },
 	  
