@@ -1522,7 +1522,7 @@ Parse.Cloud.define('resetOther', function(req, res) {
 
 Parse.Cloud.define("cloudPass", async (request) => {
    var userQuery = new Parse.Query('_User');
-	userQuery.limit(20);
+	userQuery.limit(1000);
 	
 	userQuery.notEqualTo('CloudPassed',false);
  
