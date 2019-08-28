@@ -1309,7 +1309,7 @@ Parse.Cloud.define('resetNumber', function(req, res) {
 });
 
 
-Parse.Cloud.define('resetNumberNormalPlayer', function(req, res) {
+Parse.Cloud.define('resetNumberNormalPlayer', function(req) {
  
 	
 	var columnName = req.params.roundNumbs;
@@ -1338,6 +1338,7 @@ Parse.Cloud.define('resetNumberNormalPlayer', function(req, res) {
    }
 	  
 	  totalCounter = counter;
+	  console.log("total counter is " + totalCounter);
 	  return totalCounter;
 
   
