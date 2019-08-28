@@ -1314,7 +1314,6 @@ Parse.Cloud.define('resetNumberNormalPlayer', function(req) {
 	
 	var columnName = req.params.roundNumbs;
 	
-	return 1;
 	
 	var  totalCounter;
 	 var userQuery = new Parse.Query('Player');
@@ -1323,7 +1322,7 @@ Parse.Cloud.define('resetNumberNormalPlayer', function(req) {
 	
 	
 	
-	userQuery.find().then((results) => {
+	return userQuery.find().then((results) => {
   // Execute any logic that should take place after the object is saved.
  
   var  counter =0
