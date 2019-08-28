@@ -150,8 +150,8 @@ Parse.Cloud.define('resetMoney', function(req, res) {
 		userQuery.notEqualTo("Money",80);
 	
 	
-	 userQuery.find({
-  success: function(results) {
+	return userQuery.find().then((results) => {
+  // Execute any logic that should take place after the object is saved.
  
    var  counter =0
 
@@ -168,17 +168,16 @@ Parse.Cloud.define('resetMoney', function(req, res) {
 	    totalCounter = counter;
 	  
 	  console.log(totalCounter);
-	  
-    res.success('I passed on ' + counter + ' users');
-   
-     
-  
-  },
+	  return totalCounter;
 
-  error: function(error) {
-    // error is an instance of Parse.Error.
-  }
+  
+}, (error) => {
+  // Execute any logic that should take place if the save fails.
+  // error is a Parse.Error with an error code and message.
+  console.log('Failed to create new object, with error code: ' + error.message);
 });	
+	
+
 });
 	  
 	  
