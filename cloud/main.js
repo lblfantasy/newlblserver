@@ -1314,6 +1314,8 @@ Parse.Cloud.define('resetNumberNormalPlayer', function(req) {
 	
 	var columnName = req.params.roundNumbs;
 	
+	return 1;
+	
 	var  totalCounter;
 	 var userQuery = new Parse.Query('Player');
 	userQuery.limit(1000);
