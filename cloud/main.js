@@ -1218,17 +1218,11 @@ Parse.Cloud.define('resetNumberNormal', function(req, res) {
 	var  totalCounter;
 	 var userQuery = new Parse.Query('_User');
 	userQuery.limit(1000);
+
+	userQuery.notEqualTo(columnName,0);
 	
-	
-	
-	
-	   
-		userQuery.notEqualTo(columnName,0);
-	
-	
-	 userQuery.find({
-  success: function(results) {
- 
+	return userQuery.find().then((results) => {
+  // Execute any logic that should take place after the object is saved.
    var  counter =0
 
    for (var i = 0; i < results.length; i++) {
@@ -1244,18 +1238,16 @@ Parse.Cloud.define('resetNumberNormal', function(req, res) {
 	  
 	  totalCounter = counter;
 	  
-	  console.log(totalCounter);
-	  
-    res.success('I passed on ' + counter + ' users');
-   
-     
-  
-  },
+	
+	  return totalCounter;
 
-  error: function(error) {
-    // error is an instance of Parse.Error.
-  }
+  
+}, (error) => {
+  // Execute any logic that should take place if the save fails.
+  // error is a Parse.Error with an error code and message.
+  console.log('Failed to create new object, with error code: ' + error.message);
 });	
+	
 });
 
 
