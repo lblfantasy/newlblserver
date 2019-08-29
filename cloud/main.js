@@ -285,18 +285,11 @@ Parse.Cloud.define('daFiftyNormal', function(req, res) {
 	var  totalCounter;
 	 var userQuery = new Parse.Query('_User');
 	userQuery.limit(1000);
+	userQuery.notEqualTo(columnName,myArray);
 	
-	
-	
-	
-	   
-		userQuery.notEqualTo(columnName,myArray);
-	
-	
-	 userQuery.find({
-  success: function(results) {
- 
-   var  counter =0
+	return userQuery.find().then((results) => {
+  // Execute any logic that should take place after the object is saved.
+     var  counter =0
 
    for (var i = 0; i < results.length; i++) {
   
@@ -311,18 +304,15 @@ Parse.Cloud.define('daFiftyNormal', function(req, res) {
 	  
 	  totalCounter = counter;
 	  
-	  console.log(totalCounter);
-	  
-    res.success('I passed on ' + counter + ' users');
-   
-     
-  
-  },
+	  return totalCounter;
 
-  error: function(error) {
-    // error is an instance of Parse.Error.
-  }
-});	
+  
+}, (error) => {
+  // Execute any logic that should take place if the save fails.
+  // error is a Parse.Error with an error code and message.
+  console.log('Failed to create new object, with error code: ' + error.message);
+});
+	
 });
 
 Parse.Cloud.define('daFifty', function(req, res) {
@@ -1073,18 +1063,12 @@ Parse.Cloud.define('resetArrayNormal', function(req, res) {
 	var  totalCounter;
 	 var userQuery = new Parse.Query('_User');
 	userQuery.limit(1000);
+	userQuery.notEqualTo(columnName,myArray);
 	
 	
-	
-	
-	   
-		userQuery.notEqualTo(columnName,myArray);
-	
-	
-	 userQuery.find({
-  success: function(results) {
- 
-   var  counter =0
+	return userQuery.find().then((results) => {
+  // Execute any logic that should take place after the object is saved.
+    var  counter =0
 
    for (var i = 0; i < results.length; i++) {
   
@@ -1099,18 +1083,16 @@ Parse.Cloud.define('resetArrayNormal', function(req, res) {
 	  
 	  totalCounter = counter;
 	  
-	  console.log(totalCounter);
-	  
-    res.success('I passed on ' + counter + ' users');
-   
-     
-  
-  },
+	  return totalCounter;
 
-  error: function(error) {
-    // error is an instance of Parse.Error.
-  }
+  
+}, (error) => {
+  // Execute any logic that should take place if the save fails.
+  // error is a Parse.Error with an error code and message.
+  console.log('Failed to create new object, with error code: ' + error.message);
 });	
+	
+
 });
 
 
@@ -1170,18 +1152,12 @@ Parse.Cloud.define('resetStringNormal', function(req, res) {
 	var  totalCounter;
 	 var userQuery = new Parse.Query('_User');
 	userQuery.limit(1000);
+	userQuery.notEqualTo(columnName,'');
 	
 	
-	
-	
-	   
-		userQuery.notEqualTo(columnName,'');
-	
-	
-	 userQuery.find({
-  success: function(results) {
- 
-   var  counter =0
+	return userQuery.find().then((results) => {
+  // Execute any logic that should take place after the object is saved.
+     var  counter =0
 
    for (var i = 0; i < results.length; i++) {
   
@@ -1196,18 +1172,15 @@ Parse.Cloud.define('resetStringNormal', function(req, res) {
 	  
 	  totalCounter = counter;
 	  
-	  console.log(totalCounter);
-	  
-    res.success('I passed on ' + counter + ' users');
-   
-     
-  
-  },
+	  return totalCounter;
 
-  error: function(error) {
-    // error is an instance of Parse.Error.
-  }
-});	
+  
+}, (error) => {
+  // Execute any logic that should take place if the save fails.
+  // error is a Parse.Error with an error code and message.
+  console.log('Failed to create new object, with error code: ' + error.message);
+});
+	
 });
 
 Parse.Cloud.define('resetNumberNormal', function(req, res) {
