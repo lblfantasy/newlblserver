@@ -86,7 +86,7 @@ Parse.Cloud.define('opX', function(req, res) {
 Parse.Cloud.define('daConfirm', function(req, res) {
  
 	 var myArray = new Array(50).fill(0);
-	myArray[0] = 1;
+
 	var columnName = req.params.roundNumbs;
 	
 	var  totalCounter;
