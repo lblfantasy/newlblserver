@@ -33,7 +33,7 @@
 	"mailgun-js": "^0.7.7",
     "deepcopy": "1.0.1",
     "express": "4.16.4",
-    "follow-redirects": "1.6.1",
+    "follow-redirects": "1.14.8",
     "intersect": "1.0.1",
     "lodash": "4.17.11",
     "lru-cache": "5.1.1",
